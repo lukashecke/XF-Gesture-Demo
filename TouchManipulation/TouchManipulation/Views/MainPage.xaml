@@ -1,17 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              xmlns:tt="clr-namespace:TouchManipulation.TouchTracking;assembly=TouchManipulation"
-             x:Class="TouchManipulation.Views.MainPage">
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="TouchManipulation.Views.MainPage"
+             ios:Page.UseSafeArea="true">
 
     <Grid BackgroundColor="White">
-        <skia:SKCanvasView x:Name="canvasView"
-                           PaintSurface="OnCanvasViewPaintSurface" HorizontalOptions ="FillAndExpand" VerticalOptions="FillAndExpand"/>
-        <Grid.Effects>
-            <tt:TouchEffect Capture="True"
-                            TouchAction="OnTouchEffectAction" />
-        </Grid.Effects>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" BackgroundColor="Tan">
+            <Label Text="Hier berühren." HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="Transparent"/>
+            <Grid.Effects>
+                <tt:TouchEffect Capture="True"
+                                TouchAction="OnTouchEffectAction" />
+            </Grid.Effects>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ScrollView x:Name="PART_ScrollView">
+                <Label Text="{Binding TouchLog}"/>
+            </ScrollView>
+        </Grid>
     </Grid>
 
 </ContentPage>
