@@ -20,8 +20,6 @@ namespace TouchManipulation.Views
 
         public MainPage()
         {
-            LoadResourceBitmap();
-
             InitializeComponent();
             this.BindingContext = new MainPageViewModel();
         }
@@ -33,25 +31,12 @@ namespace TouchManipulation.Views
             SKCanvas canvas = surface.Canvas;
 
             canvas.Clear();
-
-            canvas.DrawBitmap(resourceBitmap, new SKRect(0, info.Height / 3, info.Width, 2 * info.Height / 3));
         }
 
         private void OnTouchEffectAction(object sender, TouchActionEventArgs args)
         {
-            // TODO LHE:
+            // TODO LHE: https://docs.microsoft.com/de-de/xamarin/xamarin-forms/user-interface/graphics/skiasharp/transforms/touch#pinching-and-scaling
             Console.WriteLine("OnTouchEffectAction");
-        }
-
-        private void LoadResourceBitmap()
-        {
-            string resourceID = "TouchManipulation.Media.octocat-jedi.jpg";
-            Assembly assembly = GetType().GetTypeInfo().Assembly;
-
-            using (Stream stream = assembly.GetManifestResourceStream(resourceID))
-            {
-                resourceBitmap = SKBitmap.Decode(stream);
-            }
         }
     }
 }
