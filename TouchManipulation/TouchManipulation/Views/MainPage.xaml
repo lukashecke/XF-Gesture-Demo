@@ -18,10 +18,16 @@
                                 TouchAction="OnTouchEffectAction" />
             </Grid.Effects>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="10">
             <ScrollView x:Name="PART_ScrollView">
                 <Label Text="{Binding TouchLog}"/>
             </ScrollView>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10" HorizontalOptions="End" VerticalOptions="End">
+            <Button HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Text="Clear"
+                    Command="{Binding ClearLogCommand}" />
         </Grid>
     </Grid>
 

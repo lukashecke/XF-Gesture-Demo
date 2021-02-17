@@ -1,8 +1,13 @@
-﻿namespace TouchManipulation.ViewModels
+﻿using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace TouchManipulation.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private string touchLog = "Hier werden alle Berührungsgesten geloggt.";
+        private string touchLog = "Hier werden alle Berührungsgesten geloggt:";
+
+        public ICommand ClearLogCommand {private set; get; }
 
         public string TouchLog
         {
@@ -15,6 +20,19 @@
                 this.touchLog = value;
                 this.OnPropertyChanged();
             }
+        }
+
+        public MainPageViewModel() {
+            ClearLogCommand = new Command(
+                execute: () =>
+                {
+                    this.TouchLog = "Hier werden alle Berührungsgesten geloggt:";
+                },
+                canExecute: () =>
+                {
+                    returen true;
+                }
+            );
         }
     }
 }
